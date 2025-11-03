@@ -8,14 +8,14 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 export const metadata = {
-  title: "Valencia University Pass",
+  title: "MiUPV",
   description: "Digital student ID and access card",
   manifest: "/manifest.json",
   themeColor: "#2563eb",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Valencia Pass",
+    title: "MiUPV",
   },
   viewport: {
     width: "device-width",
