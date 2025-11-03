@@ -2,12 +2,11 @@
   "name": "MiUPV",
   "short_name": "MiUPV",
   "description": "Digital student ID and access card",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#1c1b1f",
   "theme_color": "#2563eb",
   "orientation": "portrait",
-  "scope": "/",
   "icons": [
     {
       "src": "apple-icon-57x57.png",
