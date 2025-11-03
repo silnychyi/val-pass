@@ -1,10 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-export default function BottomNav() {
-  const pathname = usePathname();
+export default function BottomNav({ activeView, onNavClick }) {
   const navColor = "#d1d1d1";
   const activeColor = "#ffffff";
 
@@ -94,17 +90,17 @@ export default function BottomNav() {
     >
       <div className="flex justify-around items-center p-2 pb-8">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = activeView === item.href;
           return (
-            <Link
+            <button
               key={item.href}
-              href={item.href}
-              className="flex flex-col items-center justify-center flex-1 h-full transition-colors"
+              onClick={() => onNavClick(item.href)}
+              className="flex flex-col items-center justify-center flex-1 h-full transition-colors cursor-pointer border-none bg-transparent"
               style={{ color: isActive ? activeColor : navColor }}
             >
               {item.icon}
               <span className="text-xs">{item.label}</span>
-            </Link>
+            </button>
           );
         })}
       </div>

@@ -10,8 +10,22 @@ import barcodeButton from "@/img/barcode-button.png";
 
 function Content() {
   const [isBarcodeOpen, setIsBarcodeOpen] = useState(false);
+  const [activeView, setActiveView] = useState("/");
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "Tomash, Alvaro";
+
+  const handleNavClick = (href) => {
+    setActiveView(href);
+  };
+
+  if (activeView !== "/") {
+    return (
+      <>
+        <LoadingScreen />
+        <BottomNav activeView={activeView} onNavClick={handleNavClick} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -45,7 +59,7 @@ function Content() {
         </main>
       </div>
 
-      <BottomNav />
+      <BottomNav activeView={activeView} onNavClick={handleNavClick} />
       <BarcodeOverlay
         isOpen={isBarcodeOpen}
         onClose={() => setIsBarcodeOpen(false)}
