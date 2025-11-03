@@ -57,7 +57,12 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-title" content="MiUPV" />
       </head>
       <body className={`${sourceCodePro.variable} antialiased`}>
-        {children}
+        <div
+          className="max-w-md mx-auto w-full min-h-screen"
+          style={{ backgroundColor: "#1c1b1f" }}
+        >
+          {children}
+        </div>
         <ServiceWorkerRegistration />
       </body>
     </html>

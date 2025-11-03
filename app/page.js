@@ -30,9 +30,9 @@ function Content() {
   return (
     <>
       <div className="min-h-screen pb-20">
-        <main className="container mx-auto px-4 py-8">
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold text-white mb-4 mt-10">MiUPV</h1>
+        <main className="px-4 py-8">
+          <div>
+            <h1 className="text-2xl font-bold text-white mb-4 mt-8">MiUPV</h1>
             <div className="relative mt-16">
               <img src={pass.src} alt="pass" className="w-full h-auto" />
               <div

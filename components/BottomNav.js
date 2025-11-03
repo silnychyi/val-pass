@@ -85,24 +85,26 @@ export default function BottomNav({ activeView, onNavClick }) {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 shadow-lg safe-area-inset-bottom"
+      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full shadow-lg safe-area-inset-bottom"
       style={{ backgroundColor: "#2e2d31" }}
     >
-      <div className="flex justify-around items-center p-2 pb-8">
-        {navItems.map((item) => {
-          const isActive = activeView === item.href;
-          return (
-            <button
-              key={item.href}
-              onClick={() => onNavClick(item.href)}
-              className="flex flex-col items-center justify-center flex-1 h-full transition-colors cursor-pointer border-none bg-transparent"
-              style={{ color: isActive ? activeColor : navColor }}
-            >
-              {item.icon}
-              <span className="text-xs">{item.label}</span>
-            </button>
-          );
-        })}
+      <div className="max-w-md mx-auto">
+        <div className="flex justify-around items-center p-2 pb-8">
+          {navItems.map((item) => {
+            const isActive = activeView === item.href;
+            return (
+              <button
+                key={item.href}
+                onClick={() => onNavClick(item.href)}
+                className="flex flex-col items-center justify-center flex-1 h-full transition-colors cursor-pointer border-none bg-transparent"
+                style={{ color: isActive ? activeColor : navColor }}
+              >
+                {item.icon}
+                <span className="text-xs">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );
