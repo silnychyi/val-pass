@@ -1,5 +1,6 @@
 import { Source_Code_Pro } from "next/font/google";
 import "./globals.css";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
 const sourceCodePro = Source_Code_Pro({
   variable: "--font-source-code-pro",
@@ -87,6 +88,7 @@ export default function RootLayout({ children }) {
         >
           {children}
         </div>
+        <ServiceWorkerRegistration />
       </body>
     </html>
   );
