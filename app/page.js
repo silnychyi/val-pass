@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BottomNav from "@/components/BottomNav";
 import BarcodeOverlay from "@/components/BarcodeOverlay";
+import LoadingScreen from "@/components/LoadingScreen";
 import pass from "@/img/pass.png";
 import barcodeButton from "@/img/barcode-button.png";
 
-export default function Page() {
+function Content() {
   const [isBarcodeOpen, setIsBarcodeOpen] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "Tomash, Alvaro";
@@ -50,5 +51,13 @@ export default function Page() {
         onClose={() => setIsBarcodeOpen(false)}
       />
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<LoadingScreen />}>
+      <Content />
+    </Suspense>
   );
 }
