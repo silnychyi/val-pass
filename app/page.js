@@ -1,0 +1,54 @@
+"use client";
+
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import BottomNav from "@/components/BottomNav";
+import BarcodeOverlay from "@/components/BarcodeOverlay";
+import pass from "@/img/pass.png";
+import barcodeButton from "@/img/barcode-button.png";
+
+export default function Page() {
+  const [isBarcodeOpen, setIsBarcodeOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name") || "Tomash, Alvaro";
+
+  return (
+    <>
+      <div className="min-h-screen pb-20">
+        <main className="container mx-auto px-4 py-8">
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-2xl font-bold text-white mb-4 mt-10">MiUPV</h1>
+            <div className="relative mt-16">
+              <img src={pass.src} alt="pass" className="w-full h-auto" />
+              <div
+                className="absolute top-[65%] left-[36%] font-bold uppercase"
+                style={{ color: "#1c1b1f", fontSize: "20px" }}
+              >
+                {name}
+              </div>
+            </div>
+
+            <h2 className="text-white text-center text-2xl font-bold mt-10 p-4">
+              UPV Services
+            </h2>
+
+            <div className="flex justify-center items-center">
+              <img
+                src={barcodeButton.src}
+                alt="barcode button"
+                className="max-w-[220px] h-auto"
+                onClick={() => setIsBarcodeOpen(true)}
+              />
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <BottomNav />
+      <BarcodeOverlay
+        isOpen={isBarcodeOpen}
+        onClose={() => setIsBarcodeOpen(false)}
+      />
+    </>
+  );
+}
