@@ -76,6 +76,42 @@ export default function RootLayout({ children }) {
                 
                 updateAppleIcon('apple-touch-icon', '/apple-icon-180x180.png');
                 updateAppleIcon('apple-touch-icon-precomposed', '/apple-icon-precomposed.png');
+                
+                // Preserve URL parameters for PWA installation
+                (function() {
+                  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                                    window.navigator.standalone || 
+                                    document.referrer.includes('android-app://');
+                  var urlParams = new URLSearchParams(window.location.search);
+                  var hasParams = urlParams.toString().length > 0;
+                  
+                  // If we have URL parameters (and not in standalone mode yet), save them
+                  // This captures params when user visits before installing
+                  if (hasParams && !isStandalone) {
+                    localStorage.setItem('pwa_url_params', urlParams.toString());
+                    localStorage.removeItem('pwa_params_restored'); // Reset restore flag
+                  }
+                  
+                  // If we're in standalone mode and have no URL params, restore from localStorage
+                  if (isStandalone && !hasParams) {
+                    var alreadyRestored = localStorage.getItem('pwa_params_restored');
+                    if (!alreadyRestored) {
+                      var savedParams = localStorage.getItem('pwa_url_params');
+                      if (savedParams) {
+                        var newUrl = window.location.pathname + '?' + savedParams;
+                        if (window.location.hash) {
+                          newUrl += window.location.hash;
+                        }
+                        // Mark as restored to prevent loops
+                        localStorage.setItem('pwa_params_restored', 'true');
+                        // Update URL and reload to ensure Next.js picks up the params
+                        window.history.replaceState({}, '', newUrl);
+                        window.location.reload();
+                        return; // Exit early since we're reloading
+                      }
+                    }
+                  }
+                })();
               })();
             `,
           }}
