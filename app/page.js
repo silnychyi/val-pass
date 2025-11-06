@@ -32,7 +32,7 @@ function Content() {
       <div className="min-h-screen pb-20">
         <main className="px-4 py-8">
           <div>
-            <h1 className="text-2xl font-bold text-white mb-4 mt-8">MiUPV</h1>
+            <h1 className="text-2xl font-bold text-white mb-4 mt-4">MiUPV</h1>
             <div className="relative mt-16">
               <img src={pass.src} alt="pass" className="w-full h-auto" />
               <div
